@@ -3,13 +3,21 @@ import './App.css';
 
 function App() {
   const [input, setinput] = useState('')
-  const [messager, setmessager] = useState('messager')
+  const [messages, setmessages] = useState(['g','fg'])
+  const sendMessages = () => {
+    setmessages([...messages, input])
+    setinput('')
+  }
   return (
     <div className="App">
-      <h2>new change</h2>
-      <h1>{messager}</h1>
       <input value={input} onChange={e => setinput(e.currentTarget.value)}/>
-      <button onClick={()=>setmessager(input)}>Send message</button>
+      <button onClick={sendMessages}>Send message</button>
+      {
+        messages.map(msg => {
+          return <p>{msg}</p>
+          
+        })
+      }
     </div>
   );
 }
